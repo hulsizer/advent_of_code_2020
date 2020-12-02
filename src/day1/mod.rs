@@ -4,23 +4,22 @@ pub fn run(input: std::string::String) {
     numbers.sort();
 
     //Part 1
-    let a = find_components(&numbers, 2020);
-    println!("Total Part 1: {}", numbers[a.0] * numbers[a.1]);
-
+    if let Some((value_one, value_two)) = find_components(&numbers, 2020) {
+        println!("Total Part 1: {}", numbers[value_one] * numbers[value_two]);
+    }
 
     //Part 2
     for elem in 0..numbers.len() {
         if 2020 - numbers[elem] > 0 {
-            let a = find_components(&numbers, 2020 - numbers[elem]);
-            if a.0 != 0 || a.1 != 0 {
-                println!("Total Part 2: {}", numbers[a.0] * numbers[a.1] * numbers[elem]);
+            if let Some((value_one, value_two)) = find_components(&numbers, 2020 - numbers[elem]) {
+                println!("Total Part 2: {}", numbers[value_one] * numbers[value_two] * numbers[elem]);
                 break;
             }
         }
     }
 }
 
-fn find_components(numbers: &Vec<i32>, value: i32) -> (usize, usize) {
+fn find_components(numbers: &Vec<i32>, value: i32) -> Option<(usize, usize)> {
     let mut low_iter = 0;
     let mut high_iter = numbers.len() - 1;
     while low_iter != high_iter {
@@ -31,8 +30,8 @@ fn find_components(numbers: &Vec<i32>, value: i32) -> (usize, usize) {
         } else if total < value {
             low_iter = low_iter + 1;
         } else {
-            return (low_iter, high_iter);
+            return Some((low_iter, high_iter));
         }
     }
-    return (0, 0)
+    return None
 }
