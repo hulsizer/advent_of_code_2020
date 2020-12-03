@@ -44,7 +44,7 @@ pub fn run(input: std::string::String) {
                                            Traversal::new(Point { x: 7, y: 1}),
                                            Traversal::new(Point { x: 1, y: 2})];
 
-    for (line_num,line) in input.lines().into_iter().enumerate() {
+    for (line_num,line) in input.lines().enumerate() {
         for traversal in traversals.iter_mut() {
             if line_num % traversal.slope.y == 0 {
                 if line.chars().nth(traversal.position.x % line.len()).unwrap() == '#' {
@@ -55,6 +55,14 @@ pub fn run(input: std::string::String) {
             }
         }
     }
+
+    // Note: This type doesnt step . . . hmmmm
+    // input.lines().enumerate().for_each( |(line_num, line)| {
+    //     traversals.iter_mut()
+    //         .filter(| traversal| line_num % traversal.slope.y == 0)
+    //         .filter( | traversal| line.chars().nth(traversal.position.x % line.len()).unwrap() == '#')
+    //         .for_each(| traversal| traversal.trees_hit += 1)
+    // });
 
     let mut total = 1;
     for traversal in traversals {
