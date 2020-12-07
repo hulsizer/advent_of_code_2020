@@ -35,8 +35,8 @@ pub fn run(input: std::string::String) {
         line.chars().for_each(|char| {
             match char {
                 'F' => high = ((high - low) / 2) + low,
-                'B' => low = ((high - low) / 2) + 1 + low,
-                'R' => low_column = ((high_column - low_column) / 2) + 1 + low_column,
+                'B' => low = ((high - low) / 2) + low + 1, //+1 for integer rounding on the low end
+                'R' => low_column = ((high_column - low_column) / 2) + low_column, //+1 for integer rounding on the low end
                 'L' => high_column = (high_column - low_column) / 2  + low_column,
                 _ => ()
             }
