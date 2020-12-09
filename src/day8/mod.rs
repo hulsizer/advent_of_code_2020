@@ -106,11 +106,9 @@ pub fn pt2(input: std::string::String) {
                 match chars.next().unwrap() {
                     '+' => {
                         accumulator += chars.as_str().parse::<usize>().unwrap();
-                        //println!("During {:?}", accumulator);
                     },
                     '-' => {
                         accumulator -= chars.as_str().parse::<usize>().unwrap();
-                        //println!("During {:?}", accumulator);
                     }
                     _ => ()
                 }
