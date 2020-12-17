@@ -2,7 +2,7 @@
 pub fn run(input: std::string::String) {
 
     let mut seats: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
-    while true {
+    loop {
         let fill_result = fill_seats(&seats);
         if !fill_result.0 { println!("No changes on Fill"); break };
         seats = fill_result.1;
@@ -21,7 +21,7 @@ pub fn run(input: std::string::String) {
 pub fn check_slope(seats: &Vec<Vec<char>>, position: (usize, usize), slope: (i32, i32)) -> bool {
     let mut loop_index = 1;
 
-    while true {
+    loop {
         let new_x: i32 = position.0 as i32 + (slope.0 * loop_index);
         let new_y: i32 = position.1 as i32 + (slope.1 * loop_index);
 

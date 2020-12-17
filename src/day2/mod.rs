@@ -8,7 +8,7 @@ use pattern_parse::ParsePattern;
 pub fn run(input: std::string::String) {
     let valid_passwords = input.lines().filter( |s| {
         
-        let parts = s.parse("%u-%u %c: %s");
+        let parts = s.parse_pttrn("%u-%u %c: %s");
         let low = parts[0].uSize().unwrap() - 1;
         let high = parts[1].uSize().unwrap() - 1;
         let letter = parts[2].char().unwrap();

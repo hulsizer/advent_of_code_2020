@@ -17,7 +17,7 @@ pub fn pt1(input: String) {
                      .collect();
 
 
-    let mut adjusted: Vec<(i32, i32)> = times.iter().map(|time| {
+    let mut adjusted: Vec<(i32, i32)> = buses.iter().map(|time| {
         return (((id as f32 / *time as f32).ceil() as i32 * *time) - id, *time);
     }).collect();
 
