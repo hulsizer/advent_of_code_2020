@@ -46,11 +46,11 @@ impl ParseValue {
     }
 }
 pub trait ParsePattern<'a> {
-    fn parse(&'a self, _: &str) -> Vec<ParseValue>;
+    fn parse_pttrn(&'a self, _: &str) -> Vec<ParseValue>;
 }
 
 impl<'a> ParsePattern<'a> for &'a str {
-    fn parse(&'a self, pattern: &str) -> Vec<ParseValue> { 
+    fn parse_pttrn(&'a self, pattern: &str) -> Vec<ParseValue> { 
 
         let mut parseValues: Vec<ParseValue> = vec![];
 
@@ -59,6 +59,8 @@ impl<'a> ParsePattern<'a> for &'a str {
         regex_str = regex_str.replace("%i", "(.*)");
         regex_str = regex_str.replace("%f", "(.*)");
         regex_str = regex_str.replace("%u", "(.*)");
+        regex_str = regex_str.replace("[", "\\[");
+        regex_str = regex_str.replace("]", "\\]");
 
         let re = regex::Regex::new(&regex_str).unwrap();
         let keys = re.captures(pattern).unwrap();
